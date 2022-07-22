@@ -1,10 +1,10 @@
-import { imprimirGastos,guardarGasto,cargarLS,gastos } from "./funciones.js";
+import { imprimirGastos,guardarGasto} from "./funciones.js";
 
 const form = document.querySelector("#form");
 
 
 document.addEventListener('DOMContentLoaded',()=>{
-   cargarLS();
+    imprimirGastos();
 })
 
 form.addEventListener('submit', (e) => {
@@ -12,28 +12,9 @@ form.addEventListener('submit', (e) => {
 
     guardarGasto();
     imprimirGastos();
-    localStorage.setItem('gastos',JSON.stringify(gastos));
     form.reset();
 
 });
 
 
-
-
-// const url='http://localhost:3000/gastos'
-
-// async function guardarApi(gasto){
-//     try {
-//         await fetch(url,{
-//             method:'POST',
-//             body:JSON.stringify(gasto),
-//             headers:{
-//                 'Content-Type':'application/json'
-//             }
-//         })
-        
-//     } catch (error) {
-//         console.log(error)
-//     }
-// }
 

@@ -1,4 +1,4 @@
-export let gastos =[];
+import { eliminarGasto, obtenerGastos, subirGasto } from "./api.js";
 
 export function guardarGasto() {
     const motivo = document.querySelector("input[name='motivo']").value;
@@ -13,14 +13,15 @@ export function guardarGasto() {
     }
 
     // guardarApi(gasto);
-    gastos.push(gasto);
+    subirGasto(gasto);
     mensaje();
     setTimeout(() => {
         mensaje();
     }, 3000);
 }
 
-export function imprimirGastos() {
+export async function imprimirGastos() {
+    let gastos=await obtenerGastos();
     const containGastos = document.querySelector("#contain-gastos");
     limpiarHTML(containGastos);
 
@@ -39,23 +40,22 @@ export function imprimirGastos() {
     });
 }
 
-export function borrarGasto(e){
-    let id=e.target.dataset.id;
-    if(e.target.classList.contains('delete')){
-        gastos=gastos.filter((gasto)=>gasto.id!=Number(id));
-    }
-    localStorage.setItem('gastos',JSON.stringify(gastos));
-    imprimirGastos();
+function borrarGasto(e){
     
+    if(e.target.classList.contains('delete')){
+        let id=e.target.dataset.id;
+        eliminarGasto(id);
+    }
+    imprimirGastos();
 }
 
-export function limpiarHTML(etiqueta) {
+function limpiarHTML(etiqueta) {
     while (etiqueta.firstChild) {
         etiqueta.removeChild(etiqueta.firstChild);
     }
 }
 
-export function mensaje() {
+function mensaje() {
     const main = document.querySelector('#main');
 
     if (document.querySelector('.mensajeExito')) {
@@ -74,11 +74,4 @@ export function mensaje() {
         main.prepend(div);
     }
 
-}
-
-export function cargarLS(){
-    if(localStorage.length > 0){
-        gastos=JSON.parse(localStorage.getItem('gastos'));
-        imprimirGastos();
-    }
 }
