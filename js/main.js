@@ -8,13 +8,12 @@ document.addEventListener('DOMContentLoaded',()=>{
 })
 
 form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
     guardarGasto();
-    imprimirGastos();
     form.reset();
 
+    e.preventDefault();
 });
+
 
 
 

@@ -13,15 +13,24 @@ export function guardarGasto() {
     }
 
     // guardarApi(gasto);
-    subirGasto(gasto);
-    mensaje();
-    setTimeout(() => {
-        mensaje();
-    }, 3000);
+    new Promise(resolve => {
+        
+        mensaje('exito');
+        setTimeout(() => {
+            resolve(mensaje('exito'));
+        }, 1000);
+    })
+    .then(()=>{
+        subirGasto(gasto);
+        imprimirGastos();
+    });
+    
+    
+
 }
 
 export async function imprimirGastos() {
-    let gastos=await obtenerGastos();
+    let gastos = await obtenerGastos();
     const containGastos = document.querySelector("#contain-gastos");
     limpiarHTML(containGastos);
 
@@ -36,17 +45,28 @@ export async function imprimirGastos() {
             <button class='delete' data-id='${gasto.id}'>X</button>
         `;
         containGastos.append(div);
-        containGastos.onclick=(e)=>{borrarGasto(e)};
+        containGastos.onclick = (e) => { borrarGasto(e) };
     });
 }
 
-function borrarGasto(e){
-    
-    if(e.target.classList.contains('delete')){
-        let id=e.target.dataset.id;
-        eliminarGasto(id);
+function borrarGasto(e) {
+
+    if (e.target.classList.contains('delete')) {
+        let id = e.target.dataset.id;
+
+        
+        new Promise(resolve => {
+        
+            mensaje('borrar');
+            setTimeout(() => {
+                resolve(mensaje('borrar'));
+            }, 1000);
+        })
+        .then((e)=>{
+            eliminarGasto(id);
+            imprimirGastos();
+        });
     }
-    imprimirGastos();
 }
 
 function limpiarHTML(etiqueta) {
@@ -55,23 +75,41 @@ function limpiarHTML(etiqueta) {
     }
 }
 
-function mensaje() {
+function mensaje(mj) {
     const main = document.querySelector('#main');
-
-    if (document.querySelector('.mensajeExito')) {
-        const div = document.querySelector('.mensajeExito');
-        if (div.style.display == 'none') {
-            div.style.display = 'block';
+    if (mj == 'exito') {
+        if (document.querySelector('.mensajeExito')) {
+            const div = document.querySelector('.mensajeExito');
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            } else {
+                div.style.display = 'none';
+            }
         } else {
-            div.style.display = 'none';
+            const div = document.createElement('div');
+            div.classList.add('mensajeExito')
+            div.innerHTML = `
+                Gasto guardado con exito.
+            `;
+            main.prepend(div);
         }
     } else {
-        const div = document.createElement('div');
-        div.classList.add('mensajeExito')
-        div.innerHTML = `
-            Gasto guardado con exito.
-        `;
-        main.prepend(div);
+        if (document.querySelector('.mensajeBorrar')) {
+            const div = document.querySelector('.mensajeBorrar');
+            if (div.style.display == 'none') {
+                div.style.display = 'block';
+            } else {
+                div.style.display = 'none';
+            }
+        } else {
+            const div = document.createElement('div');
+            div.classList.add('mensajeBorrar')
+            div.innerHTML = `
+                Borrando gasto...
+            `;
+            main.prepend(div);
+        }
     }
+
 
 }
