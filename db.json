@@ -1,10 +1,11 @@
 {
   "gastos": [
     {
-      "motivo": "comida",
-      "fecha": "2/11/2022",
-      "dinero": 23000,
-      "id": 120039485
+      "motivo": "gcc",
+      "fecha": "2022-09-09",
+      "costo": 5000,
+      "metodo": true,
+      "id": 1
     }
   ]
 }

@@ -1,27 +1,52 @@
+@font-face {
+    font-family:'general' ;
+    src: url('../fonts/general.ttf');
+}
+html{
+    font-size: 62.5%;
+}
+
 *{
     margin:0px;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:general;
 }
+body{
+    background: rgb(61,139,128);
+    background: linear-gradient(90deg, rgba(61,139,128,1) 0%, rgba(25,165,163,1) 48%, rgba(0,191,173,1) 100%);
+}
+
+.title{
+    font-size: 2.5em;
+}
+
+.btn{
+    font-size: 1em !important ;
+}
+
 main{
     width: 60%;
     margin:auto;
+    padding-top: 40px;
+    font-size: 1.8em;
 }
 main h1{
     text-align: center;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif
 }
 form{
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+form label{
+    letter-spacing: 1px;
 }
 .inputs{
     display: flex;
     flex-direction: column;
     row-gap: 5px;
-    margin-bottom: 10px;
+    margin-bottom: 1rem;
 }
 .inputs input{
-    padding: 6px;
+    padding: .6rem;
     border: 1px solid rgb(79, 167, 230);
     border-radius: 5px;
     outline: none;
@@ -31,54 +56,114 @@ form{
     box-shadow: 0px 0px 3px 1px rgb(79, 167, 230);
 }
 
-form .btn{
-    padding: 10px;
-    font-weight: 600;
-    background-color: rgb(79, 167, 230);
-    color: white;
-    border: none;
-    border-radius: 3px;
-}
-form .btn:hover{
-    box-shadow: 0px 0px 3px 0px rgba(108, 106, 106, 0.533) inset;
-    cursor: pointer;
-}
-form .btn:active{
-    box-shadow: 0px 0px 3px 0px rgba(108, 106, 106, 0.533) inset;
+#contain-gastos{
+    min-height: 500px;
 }
 
-.mensajeExito{
-    width: 100%;
-    padding: 30px;
-    text-align: center;
-    background-color: rgb(81, 132, 81);
-    color: white;
-    border-radius: 10px;
-    font-size: 20px;
-    letter-spacing: 2px;
-    margin-bottom: 40px;
+.list{
+    padding: 0;
 }
-.gasto{
+.list__item{
+    padding: 1rem;
+    margin: 1rem 0px;
+    list-style: none;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgba(22, 80, 168, 0.519);
-    color: white;
-    padding: 10px;
-    border: 1px solid rgb(22, 81, 168);
     border-radius: 5px;
-    margin-bottom: 5px;
+    color: black;
+    background-color: RGB(255,255,255,.5);
 }
-.gasto .delete{
-    width: 35px;
-    height: 30px;
-    background-color: rgb(226, 56, 56);
+
+.result {
+    flex-basis: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.list__item span{
+    flex-basis: 25%;
+}
+.btn-content{
+    display: flex;
+    flex-direction: row;
+}
+.list__item .eliminar{
+    flex-basis: 5%;
+}
+
+.saldo{
+    padding: 1rem;
+    border-radius: 10px;
+    background-color: rgb(23,120,55);
     color: white;
-    border-radius: 2px;
-    border: none;
+    margin: 2rem 0px;
+}
+.form-check{
+    padding: 0px;
+    margin: 2rem 0;
+}
+.form-check input{
+}
+.form-check #gasto{
+    margin-left: 1rem;
+}
+
+.form-check label{
     cursor: pointer;
+    background-color: gray;
 }
-.gasto .delete:hover{
-    background-color: rgb(226, 77, 77);
+.form-check label[for='ingreso']:hover{
+    background-color: RGB(32,148,94) !important;
 }
+.form-check label[for='gasto']:hover{
+    background-color: RGB(224,74,88) !important;
+}
+
+.btn-reset{
+    margin-bottom: 1rem;
+}
+
+
+@media (max-width:1078px) {
+    .list__item span {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width:768px) {
+    .list{
+        font-size: 15px;
+    }
+    main{
+        width: 90%;
+    }
+    .list__item span{
+        flex-basis: 33%;
+    }
+}
+
+@media (max-width:590px) {
+    main {
+        width: 90%;
+
+    }
+}
+
+
+@media (max-width:375px){
+    .list__item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .result {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+}
+

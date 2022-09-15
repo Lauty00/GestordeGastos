@@ -4,37 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="./css/styles.css">
+    <script src="./bootstrap/bootstrap.bundle.js"></script>
+    <script src="./bootstrap/bootstrap.min.js"></script>
+    <script src="./js/main.js" type="module"></script>
+    <!-- <script src="./js/peticionPrueba.js"></script> -->
     <title>Document</title>
 </head>
 
 <body>
     <main id="main">
-        <h1>Gestor de gastos</h1>
-        <form id="form">
+        <h1 class="title mb-5">Gestor de gastos</h1>
+
+        <span class="saldo">
+            
+        </span>
+
+        <form id="form" method="POST">
+            <div class="form-check">
+                <input class="d-none" type="radio" name="metodo" id="ingreso" >
+                <label class="p-2  text-white rounded-2" for="ingreso">Ingreso</label>
+                <input class="d-none" type="radio" name="metodo" id="gasto" >
+                <label class="p-2  text-white ms-3 rounded-2" for="gasto" >Gasto</label>
+            </div>
             <div class="inputs">
                 <label for="motivo">Motivo</label>
-                <input type="text" name="motivo">
+                <input type="text" name="motivo" required>
             </div>
             <div class="inputs">
                 <label for="fecha">Fecha</label>
-                <input type="month" name="fecha">
+                <input type="date" name="fecha" required>
             </div>
             <div class="inputs">
                 <label for="dinero">Dinero</label>
-                <input type="text" name="dinero">
+                <input type="text" name="dinero" required>
             </div>
 
-            <button class="btn">guardar</button>
+            <button class="btn btn-info text-white">guardar</button>
         </form>
 
 
         <div id="contain-gastos">
+            <ul class="list">
 
+            </ul>
+            <button class="btn-reset btn btn-info text-white">Resetear gestor</button>
         </div>
     </main>
-    <script src="./js/main.js" type="module"></script>
+    
 </body>
 
 </html>
