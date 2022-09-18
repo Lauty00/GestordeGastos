@@ -13,6 +13,7 @@ let metodoG=false;
 
 export function events(){
     obtenerSaldo();
+    validarInputs();
     formCheck.addEventListener('change',btnChecked);
     form.addEventListener('submit',validar);
     list.addEventListener('click',btnDelete);
@@ -60,6 +61,33 @@ function mostrarSalario(saldo){
     `;
 }
 
+function validarInputs(){
+    const motivoInput= document.querySelector('input[name="motivo"]');
+    const dineroInput= document.querySelector('input[name="dinero"]');
+    const fechaInput= document.querySelector('input[name="fecha"]');
+
+    motivoInput.addEventListener('blur',(e)=>{
+        if(e.target.value=='' || !isNaN(e.target.value)){
+            e.target.classList.add('inputIncomplete');
+        }else{
+            e.target.classList.remove('inputIncomplete')
+        }
+    })
+    fechaInput.addEventListener('blur',(e)=>{
+        if(e.target.value==''){
+            e.target.classList.add('inputIncomplete');
+        }else{
+            e.target.classList.remove('inputIncomplete')
+        }
+    })
+    dineroInput.addEventListener('blur',(e)=>{
+        if(e.target.value=='' || isNaN(e.target.value)){
+            e.target.classList.add('inputIncomplete');
+        }else{
+            e.target.classList.remove('inputIncomplete')
+        }
+    })
+}
 
 function validar(e){
     e.preventDefault()
